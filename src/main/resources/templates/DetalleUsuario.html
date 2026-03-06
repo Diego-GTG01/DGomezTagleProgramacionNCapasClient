@@ -43,10 +43,10 @@
                         <span class="fw-bold">
                             <i class="bi bi-person-vcard me-2"></i>Información Personal
                         </span>
-                        <span class="badge" th:classappend="${usuario.rol?.Nombre == 'Administrador' ? 'bg-danger' :
-                                  usuario.rol?.Nombre == 'Usuario' ? 'bg-success' :
-                                  usuario.rol?.Nombre == 'Visualizador' ? 'bg-primary' : 'bg-secondary'}"
-                            th:text="${usuario.rol?.Nombre ?: 'Sin rol'}">
+                        <span class="badge" th:classappend="${usuario.Rol?.Nombre == 'Administrador' ? 'bg-danger' :
+                                  usuario.Rol?.Nombre == 'Usuario' ? 'bg-success' :
+                                  usuario.Rol?.Nombre == 'Visualizador' ? 'bg-primary' : 'bg-secondary'}"
+                            th:text="${usuario.Rol?.Nombre ?: 'Sin rol'}">
                         </span>
                         <div class="mt-2">
                             <a th:id="@{|Update/${usuario.IdUsuario}|}" onclick="abrirModalUpdate(this)"

@@ -1,14 +1,10 @@
 package com.risosuit.DGomezTagleProgramacionNCapasMaven.ML;
 
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.Min;
 
 public class Municipio {
 
-    @Min(value=1,message = "Selecciona una opción")
     private int IdMunicipio;
     private String Nombre;
-    @Valid
     public Estado Estado;
 
     public Municipio() {
@@ -30,7 +26,7 @@ public class Municipio {
     public void setEstado(Estado Estado) {
         this.Estado = Estado;
     }
-    @Valid
+
 
     public int getIdMunicipio() {
         return IdMunicipio;

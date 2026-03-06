@@ -4,35 +4,26 @@
  */
 package com.risosuit.DGomezTagleProgramacionNCapasMaven.ML;
 
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotEmpty;
-
 /**
  *
  * @author ALIEN62
  */
 public class Direccion {
-    
+
     private int IdDireccion;
-    @NotEmpty(message = "Este campo no Puede estar vacio")
     private String Calle;
-    @NotEmpty(message = "Este campo no Puede estar vacio")
     private String NumeroExterior;
     private String NumeroInterior;
-    @Valid
     public Colonia Colonia;
-    
-    
 
     public Direccion() {
-        this.Colonia= new Colonia();
-        
+        this.Colonia = new Colonia();
+
     }
 
     public Direccion(Colonia Colonia) {
         this.Colonia = Colonia;
     }
-    
 
     public Direccion(int IdDireccion, String Calle, String NumeroExterior, String NumeroInterior, Colonia Colonia) {
         this.IdDireccion = IdDireccion;

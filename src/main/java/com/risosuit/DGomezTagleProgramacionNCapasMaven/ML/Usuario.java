@@ -1,10 +1,5 @@
 package com.risosuit.DGomezTagleProgramacionNCapasMaven.ML;
 
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -15,48 +10,22 @@ public class Usuario {
 
     private int IdUsuario;
     private String ImagenFile;
-    @NotEmpty(message = "Este campo no Puede estar vacio")
-    @Size(min = 3, max = 50, message = "Debe tener más de 3 caracteres")
-    @Pattern(regexp = "^[a-zA-Z0-9\\s]+$", message = "Ingrese Solo letras, números y espacios")
     private String UserName;
-    @NotEmpty(message = "Este campo no Puede estar vacio")
-    @Size(min = 3, max = 50, message = "Debe tener más de 3 caracteres")
     private String Nombre;
-    @NotEmpty(message = "Este campo no Puede estar vacio")
-    @Size(min = 3, max = 50, message = "Debe tener más de 3 caracteres")
     private String ApellidoPaterno;
-    @NotEmpty(message = "Este campo no Puede estar vacio")
-    @Size(min = 3, max = 50, message = "Debe tener más de 3 caracteres")
     private String ApellidoMaterno;
-    @NotEmpty(message = "Este campo no Puede estar vacio")
-    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "Ingrese un correo valido")
     private String Email;
-    @NotEmpty(message = "Este campo no Puede estar vacio")
     private String Password;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @NotNull(message = "Debes seleccionar una fecha")
     private LocalDate FechaNacimiento;
-    @Size(min = 1, max = 2, message = "Debe tener más de 3 caracteres")
-    @NotEmpty(message = "Debe Seleccionar una Opción")
     private String Sexo;
-    @NotEmpty(message = "Este campo no Puede estar vacio")
-    @Pattern(regexp = "^[a-zA-Z0-9\\s]+$", message = "Ingrese solo Digitos")
-    @Size(min = 10, max = 10, message = "Debe ser maximo de 10 digitos")
     private String Telefono;
-    @NotEmpty(message = "Este campo no Puede estar vacio")
-    @Pattern(regexp = "^[a-zA-Z0-9\\s]+$", message = "Ingrese solo Digitos")
-    @Size(min = 10, max = 10, message = "Debe ser maximo de 10 digitos")
     private String Celular;
-    @NotEmpty(message = "Este campo no Puede estar vacio")
-    @Size(max = 18, message = "Debe tener más de 3 caracteres")
-    @Pattern(regexp = "^[a-zA-Z0-9\\s]+$", message = "Ingrese una CURP valida")
     private String CURP;
     private int Activo = 0;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime UltimoAcceso;
-    @Valid
     public Rol Rol;
-    @Valid
     public List<Direccion> Direcciones;
 
     public Usuario() {

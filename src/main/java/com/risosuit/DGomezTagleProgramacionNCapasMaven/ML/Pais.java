@@ -1,11 +1,7 @@
 
 package com.risosuit.DGomezTagleProgramacionNCapasMaven.ML;
 
-import jakarta.validation.constraints.Min;
-
-
 public class Pais {
-    @Min(value=1,message = "Selecciona una opción")
     private int IdPais;
    
     private String Nombre;

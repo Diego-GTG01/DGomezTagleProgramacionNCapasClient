@@ -1,17 +1,13 @@
 package com.risosuit.DGomezTagleProgramacionNCapasMaven.ML;
 
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.Min;
 
 
 public class Colonia {
 
-    @Min(value = 1, message = "Selecciona una opción")
     private int IdColonia;
 
     private String Nombre;
     private String CodigoPostal;
-    @Valid
     public Municipio Municipio;
 
     public Colonia() {
