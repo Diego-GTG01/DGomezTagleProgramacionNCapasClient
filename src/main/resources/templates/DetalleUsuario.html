@@ -800,7 +800,7 @@
 
                         <div class="input-group mb-3">
                             <span class="input-group-text"><i class="bi bi-camera"></i></span>
-                            <input type="file" class="form-control" name="imagenFile" id="imagenFile" accept="image/*">
+                            <input type="file" class="form-control" name="imagen" id="imagen" accept="image/*">
 
 
                             <input type="hidden" name="idUsuario" th:value="${usuario.idUsuario}">
@@ -996,7 +996,7 @@
             var IdPais = $("#ddlpaisEditar").val();
             if (IdPais != 0) {
                 $.ajax({
-                    url: "getEstadosByPais/" + IdPais,
+                    url: "http://127.0.0.1:8081/api/estado?idPais=" + IdPais,
                     type: "GET",
                     dataType: 'json',
                     success: function (data, textStatus, jqXHR) {
@@ -1044,7 +1044,7 @@
             var IdEstado = $("#ddlestadoEditar").val();
             if (IdEstado != 0) {
                 $.ajax({
-                    url: "getMunicipiosByEstado/" + IdEstado, //petición asincrona 
+                    url: "http://localhost:8081/api/municipio?idEstado=" + IdEstado, //petición asincrona 
                     type: "GET",
                     dataType: 'json',
                     success: function (data, textStatus, jqXHR) {
@@ -1084,7 +1084,7 @@
             console.log(IdMunicipio);
             if (IdMunicipio != 0) {
                 $.ajax({
-                    url: "getColoniasByMunicipio/" + IdMunicipio,
+                    url: "http://127.0.0.1:8081/api/colonia?idMunicipio=" + IdMunicipio,
                     type: "GET",
                     dataType: 'json',
                     success: function (data, textStatus, jqXHR) {
@@ -1121,7 +1121,7 @@
             var IdPais = $("#ddlpais").val();
             if (IdPais != 0) {
                 $.ajax({
-                    url: "getEstadosByPais/" + IdPais,
+                    url: "http://127.0.0.1:8081/api/estado?idPais=" + IdPais,
                     type: "GET",
                     dataType: 'json',
                     success: function (data, textStatus, jqXHR) {
@@ -1169,7 +1169,7 @@
             var IdEstado = $("#ddlestado").val();
             if (IdEstado != 0) {
                 $.ajax({
-                    url: "getMunicipiosByEstado/" + IdEstado, //petición asincrona 
+                    url: "http://127.0.0.1:8081/api/municipio?idEstado="+ IdEstado, //petición asincrona 
                     type: "GET",
                     dataType: 'json',
                     success: function (data, textStatus, jqXHR) {
@@ -1185,6 +1185,7 @@
                         $.each(data.Objects, function (i, municipio) {
                             $("#ddlmunicipio").append("<option value=" + municipio.IdMunicipio + ">" + municipio.Nombre + "</option>");
                         });
+                        console.log(data);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         alert("No se pudo procesar la tarea");
@@ -1207,7 +1208,7 @@
             var IdMunicipio = $("#ddlmunicipio").val();
             if (IdMunicipio != 0) {
                 $.ajax({
-                    url: "getColoniasByMunicipio/" + IdMunicipio,
+                    url: "http://localhost:8081/api/colonia?idMunicipio="  + IdMunicipio,
                     type: "GET",
                     dataType: 'json',
                     success: function (data, textStatus, jqXHR) {
@@ -1651,7 +1652,7 @@
     function cargarEstadoByPais(IdPais, IdEstado, selectDestino) {
 
         $.ajax({
-            url: "getEstadosByPais/" + IdPais,
+            url: "http://127.0.0.1:8081/api/estado?idPais=" + IdPais,
             type: "GET",
             dataType: "json",
             success: function (data) {
@@ -1684,7 +1685,7 @@
     function cargarMunicipioByEstado(idEstado, idMunicipio, selectDestino) {
 
         $.ajax({
-            url: "getMunicipiosByEstado/" + idEstado,
+            url: "http://127.0.0.1:8081/api/municipio?idEstado=" + idEstado,
             type: "GET",
             dataType: "json",
             success: function (data) {
@@ -1716,7 +1717,7 @@
     function cargarColoniasByMunicipio(idMunicipio, idColonia, selectDestino) {
 
         $.ajax({
-            url: "getColoniasByMunicipio/" + idMunicipio,
+            url: "http://127.0.0.1:8081/api/colonia?idMunicipio=" + idMunicipio,
             type: "GET",
             dataType: "json",
             success: function (data) {
@@ -1755,7 +1756,7 @@
         modal.show();
         if (ruta != null && ruta != 0) {
             $.ajax({
-                url: "getDireccionById/" + ruta,
+                url: "http://127.0.0.1:8081/api/direccion/" + ruta,
                 type: "GET",
                 dataType: 'json',
                 success: function (data) {
@@ -1767,9 +1768,9 @@
                         $("#ddlestadoEditar").empty();
                         $("#ddlmunicipioEditar").empty();
                         $("#ddlcoloniaEditar").empty();
-                        $('input[name="calle"]').val(direccion.Calle || '');
-                        $('input[name="numeroExterior"]').val(direccion.NumeroExterior || '');
-                        $('input[name="numeroInterior"]').val(direccion.NumeroInterior || '');
+                        $('input[name="calle"]').val(direccion.Calle);
+                        $('input[name="numeroExterior"]').val(direccion.NumeroExterior);
+                        $('input[name="numeroInterior"]').val(direccion.NumeroInterior);
                         $('input[name="rutaEditarDireccion"]').val(ruta || '');
                         $("#codigoPostalEditar").val(direccion.Colonia.CodigoPostal);
                         cargarColoniasByMunicipio(direccion.Colonia.Municipio.IdMunicipio, direccion.Colonia.IdColonia, "#ddlcoloniaEditar");
@@ -1840,6 +1841,7 @@
             icon: "error"
         }).then(() => {
             var boton = document.getElementById(direccion);
+            $('.modal').modal('hide');
 
             abrirModalUpdateDireccion(boton);
         });

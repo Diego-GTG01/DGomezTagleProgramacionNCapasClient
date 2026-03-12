@@ -27,7 +27,7 @@
 
                         <div class="d-grid mb-12">
                             <form th:action="@{/Usuario/CargaMasivaProcesar}" method="get" class="d-grid">
-                                <input type="hidden" th:value="${idArchivoActual}" name="idRuta" />
+                                <input type="hidden" th:value="${idRuta}" name="idRuta" />
                                 <button id="FormProcesar" type="submit" class="text-center btn btn-primary btn-lg"
                                     style="display:none">
                                     <i class="bi bi-plus-circle me-2 text-center"></i>
@@ -227,6 +227,19 @@
             });
             document.getElementById("mostrarFormulario").style.display = "none";
             document.getElementById("FormProcesar").style.display = "flex";
+        }
+
+    </script>
+     <script th:inline="javascript">
+
+        var miAtributo = [[${ Error }]];
+        if (miAtributo != null) {
+            Swal.fire({
+                title: "Oppss!",
+                text: miAtributo,
+                icon: "error"
+            });
+     
         }
 
     </script>

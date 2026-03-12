@@ -347,8 +347,8 @@
 
 
         $.ajax({
-            url: "Usuario/UpdateActivo/" + input.id + "/" + status,
-            type: "POST",
+            url: "http://localhost:8081/api/usuario/status/" + input.id ,
+            type: "PATCH",
             dataType: "json",
             success: function (data) {
                 if (data.Correct) {
@@ -362,6 +362,7 @@
 
                     console.log("Estatus cambiado");
                 } else {
+                    console.log(data.MessageException)
                     console.log("Algo salió mal");
                 }
             },
